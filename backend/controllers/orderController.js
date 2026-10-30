@@ -1,6 +1,5 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
-import Stripe from "stripe";
 import razorpay from "razorpay";
 import { sendOrderEmail } from "../config/emailService.js";
 import { sendInvoiceEmail } from "../config/emailService.js";
@@ -13,7 +12,6 @@ import { generateInvoice } from "../config/invoiceGenerator.js";
 const deliveryCharge = 10;
 const currency = "inr";
 // Geteway initialize
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 const razorepayInstance = new razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
@@ -284,4 +282,4 @@ const updateStatus = async (req, res) => {
 
 
 
-export { verifyRazorpay, verifyStripe, placeOrder, placeOrderStripe, placeOrderRazorpay, allOrders, userOrders, updateStatus }
+export { verifyRazorpay, placeOrder, placeOrderRazorpay, allOrders, userOrders, updateStatus }
